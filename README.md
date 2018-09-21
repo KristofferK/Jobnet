@@ -5,7 +5,7 @@ We will automate this task with Nodejs and Puppeteer.
 Kenneth (~~a jobless rat with minimal education~~a friend of mine) asked me to make this project for him.
 
 # Installation
-* Update ```./src/jobnet-credentials.ts``` with your Jobnet credentials. Please note that NemID is **not** supported.
+* Update ```./src/jobnet-credentials.ts``` with your Jobnet credentials. Please note that login using NemIDis **not** supported.
 * Run the script using ```npm start```.
 
 # Cron
