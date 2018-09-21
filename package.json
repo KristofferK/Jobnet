@@ -2,8 +2,9 @@
   "name": "jobnet",
   "version": "1.0.0",
   "description": "Kenneth (a jobless rat with minimal education) asked me to make this project for him",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "start": "tsc && node ./dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
