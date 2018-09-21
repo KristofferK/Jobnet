@@ -1,0 +1,29 @@
+{
+  "name": "jobnet",
+  "version": "1.0.0",
+  "description": "Kenneth (a jobless rat with minimal education) asked me to make this project for him",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KristofferK/Jobnet.git"
+  },
+  "keywords": [
+    "puppeteer",
+    "jobnet"
+  ],
+  "author": "Kristoffer K",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KristofferK/Jobnet/issues"
+  },
+  "homepage": "https://github.com/KristofferK/Jobnet#readme",
+  "dependencies": {
+    "puppeteer": "^1.8.0"
+  },
+  "devDependencies": {
+    "@types/puppeteer": "^1.6.4"
+  }
+}
