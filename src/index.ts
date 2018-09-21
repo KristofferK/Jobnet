@@ -1,6 +1,7 @@
-import { Browser, Page, launch } from 'puppeteer';
+import { Browser, Page, launch, Response } from 'puppeteer';
 import { credentails } from './jobnet-credentials';
-import { existsSync, mkdirSync } from 'fs';
+import { JobSeekingHistory } from './job-seeking-history';
+import { existsSync, mkdirSync, promises } from 'fs';
 
 class JobnetClient {
   private screenshotsFolder = "screenshots/";
@@ -44,10 +45,37 @@ class JobnetClient {
       return null;
     });
   }
+
+  async markJobPostingsAsRead() {
+    await this.page.click('#TjobButton');
+    await this.screenshot('03_job_postings_marked_as_read.png');
+  }
+
+  async getJobSeekingHistory(): Promise<JobSeekingHistory[]> {
+    const response = await this.page.goto('https://job.jobnet.dk/CV/Citizen/History/ConfirmJobseeking?showAll=true');
+    if (response !== null) {
+      const body = await response.json();
+      await this.screenshot('04_history.png');
+      return body.map((e: any) => new JobSeekingHistory(e[0].value, e[1].value, e[2].value));
+    }
+    else {
+      await this.screenshot('04_history_failed.png');
+      return [];
+    }
+  }
 }
 
 (async() => {
   const client = await JobnetClient.initialize();
+  
   const username = await client.login(credentails.username, credentails.password);
   console.log('Logged in as', username);
+  
+  await client.markJobPostingsAsRead();
+  console.log('Marked job posts as read');
+
+  const history = await client.getJobSeekingHistory();
+  console.log(history);
+
+  process.exit();
 })();
